@@ -61,4 +61,10 @@ describe Fountain::Envelope do
       expect(mx).to be(my)
     end
   end
+
+  describe '#payload_type' do
+    it 'returns the class of the payload' do
+      expect(subject.payload_type).to be(subject.payload.class)
+    end
+  end
 end

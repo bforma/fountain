@@ -49,6 +49,11 @@ module Fountain
       @timestamp = timestamp
     end
 
+    # @return [Class]
+    def payload_type
+      @payload.class
+    end
+
     # @param [Hash] headers
     # @return [Envelope]
     def and_headers(headers)
