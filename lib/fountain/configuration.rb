@@ -1,7 +1,5 @@
 module Fountain
   module Configuration
-    extend self
-
     # @return [Logger]
     attr_accessor :logger
 
