@@ -14,7 +14,7 @@ module Fountain
       # @param [Object] payload
       # @param [Time] timestamp
       # @param [Integer] sequence_number
-      # @return [undefined]
+      # @return [void]
       def initialize(id, headers, payload, timestamp, sequence_number)
         super(id, headers, payload, timestamp)
         @sequence_number = sequence_number
@@ -24,7 +24,7 @@ module Fountain
 
       # @param [EventEnvelopeBuilder] builder
       # @param [Hash] headers
-      # @return [undefined]
+      # @return [void]
       def populate_duplicate(builder, headers)
         super
         builder.sequence_number = @sequence_number

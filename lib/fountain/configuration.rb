@@ -4,13 +4,13 @@ module Fountain
     attr_accessor :logger
 
     # @yield [Configuration]
-    # @return [undefined]
+    # @return [void]
     def configure
       yield self if block_given?
       populate_defaults
     end
 
-    # @return [undefined]
+    # @return [void]
     def populate_defaults
       @logger ||= Logger.new($stdout)
     end

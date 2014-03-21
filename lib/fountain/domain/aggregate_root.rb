@@ -20,12 +20,12 @@ module Fountain
       alias_method :deleted?, :deleted
 
       # @yield [EventEnvelope]
-      # @return [undefined]
+      # @return [void]
       def add_event_callback(&block)
         journal.add_callback(&block)
       end
 
-      # @return [undefined]
+      # @return [void]
       def commit_events
         @last_event_sequence_number = journal.last_sequence_number
         journal.commit
@@ -50,13 +50,13 @@ module Fountain
         journal.push(payload, headers)
       end
 
-      # @return [undefined]
+      # @return [void]
       def mark_deleted
         @deleted = true
       end
 
       # @param [Integer] last_sequence_number
-      # @return [undefined]
+      # @return [void]
       def initialize_sequence_number(last_sequence_number)
         journal.last_committed_sequence_number = last_sequence_number
         @last_event_sequence_number = last_sequence_number >= 0 ? last_sequence_number : nil

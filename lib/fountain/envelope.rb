@@ -41,7 +41,7 @@ module Fountain
     # @param [Hash] headers
     # @param [Object] payload
     # @param [Time] timestamp
-    # @return [undefined]
+    # @return [void]
     def initialize(id, headers, payload, timestamp)
       @id = id
       @headers = headers
@@ -85,7 +85,7 @@ module Fountain
 
     # @param [EnvelopeBuilder] builder
     # @param [Hash] headers
-    # @return [undefined]
+    # @return [void]
     def populate_duplicate(builder, headers)
       builder.id = @id
       builder.headers = headers

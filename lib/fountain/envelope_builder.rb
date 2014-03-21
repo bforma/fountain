@@ -28,7 +28,7 @@ module Fountain
       Envelope.new(id, headers, payload, timestamp)
     end
 
-    # @return [undefined]
+    # @return [void]
     def populate_defaults
       @id ||= SecureRandom.uuid
       @headers ||= {}

@@ -4,7 +4,7 @@ module Fountain
       # @return [Integer]
       attr_accessor :last_committed_sequence_number
 
-      # @return [undefined]
+      # @return [void]
       def initialize
         @callbacks = []
         @events = []
@@ -31,7 +31,7 @@ module Fountain
       end
 
       # @yield [EventEnvelope]
-      # @return [undefined]
+      # @return [void]
       def add_callback(&block)
         @callbacks.push(block)
 
@@ -40,7 +40,7 @@ module Fountain
         end
       end
 
-      # @return [undefined]
+      # @return [void]
       def commit
         @last_committed_sequence_number = last_sequence_number
         @events.clear
