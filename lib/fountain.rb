@@ -7,10 +7,11 @@ require 'fountain/version'
 require 'fountain/envelope'
 require 'fountain/envelope_builder'
 require 'fountain/errors'
+require 'fountain/loggable'
+require 'fountain/threaded'
 
 require 'fountain/configuration'
 require 'fountain/domain'
-require 'fountain/loggable'
 
 module Fountain
   extend Configuration
