@@ -10,13 +10,13 @@ module Fountain
 
       # @abstract
       # @raise [SubscriptionError] If subscription failed for listener
-      # @param [EventListener] listener
+      # @param [Object] listener
       def subscribe(listener)
         # This method is intentionally left blank
       end
 
       # @abstract
-      # @param [EventListener] listener
+      # @param [Object] listener
       def unsubscribe(listener)
         # This method is intentionally left blank
       end
