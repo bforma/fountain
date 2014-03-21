@@ -6,6 +6,7 @@ require 'fountain/version'
 
 require 'fountain/envelope'
 require 'fountain/envelope_builder'
+require 'fountain/errors'
 
 require 'fountain/configuration'
 require 'fountain/domain'
