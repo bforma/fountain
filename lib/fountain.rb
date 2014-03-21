@@ -13,6 +13,7 @@ require 'fountain/threaded'
 require 'fountain/configuration'
 require 'fountain/domain'
 require 'fountain/event'
+require 'fountain/session'
 
 module Fountain
   extend Configuration
