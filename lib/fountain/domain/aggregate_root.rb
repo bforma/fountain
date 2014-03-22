@@ -41,6 +41,37 @@ module Fountain
         journal.events
       end
 
+      # @!group Serialization
+
+      # Dumps the state of this aggregate for marshalling
+      # @return [Hash]
+      def marshal_dump
+        Hash[state_properties.map { |name| [name, instance_variable_get(name)] }]
+      end
+
+      # Restores the state of this aggregate from marshalling
+      #
+      # @param [Hash] state
+      # @return [void]
+      def marshal_load(state)
+        state.each do |name, value|
+          instance_variable_set(name, value)
+        end
+      end
+
+      # Returns the fields that should be serialized
+      #
+      # Override this to exclude any transient properties that should not be serialized
+      #
+      # @return [Enumerable]
+      def state_properties
+        instance_variables.sort - [:@journal]
+      end
+
+      alias_method :to_yaml_properties, :state_properties
+
+      # @!endgroup
+
       private
 
       # @param [Object] payload
