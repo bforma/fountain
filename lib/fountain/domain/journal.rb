@@ -47,6 +47,11 @@ module Fountain
         @callbacks.clear
       end
 
+      # @return [Boolean]
+      def dirty?
+        @events.size > 0
+      end
+
       # @return [Enumerable]
       def events
         @events.dup

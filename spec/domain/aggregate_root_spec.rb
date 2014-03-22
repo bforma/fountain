@@ -7,9 +7,9 @@ module Fountain::Domain
 
     describe '#commit_events' do
       it 'clears the journal and updates the last sequence number' do
-        expect(subject).to be_dirty
+        expect(subject.uncommitted_event_count).to eql(1)
         subject.commit_events
-        expect(subject).to_not be_dirty
+        expect(subject.uncommitted_event_count).to eql(0)
       end
     end
   end

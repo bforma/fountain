@@ -2,23 +2,11 @@ module Fountain
   module Domain
     # Represents the root entity of an aggregate
     #
+    # The +id+ and +version+ fields must be implemented by entities.
+    #
     # Entities are not thread safe. When storing entities, exclude the journal instance variable
     # from persistence. The journal should be treated as transient.
-    #
-    # The version field is for optimistic concurrency and will not necessarily match up with
-    # the sequence numbers assigned to events.
     module AggregateRoot
-      # @return [Object]
-      attr_reader :id
-
-      # @return [Integer]
-      attr_reader :version
-
-      # @return [Boolean]
-      attr_reader :deleted
-
-      alias_method :deleted?, :deleted
-
       # @yield [EventEnvelope]
       # @return [void]
       def add_event_callback(&block)
@@ -31,14 +19,14 @@ module Fountain
         journal.commit
       end
 
-      # @return [Boolean]
-      def dirty?
-        journal.size > 0
-      end
-
       # @return [Enumerable]
       def uncommitted_events
         journal.events
+      end
+
+      # @return [Integer]
+      def uncommitted_event_count
+        journal.size
       end
 
       private
@@ -50,21 +38,11 @@ module Fountain
         journal.push(payload, headers)
       end
 
-      # @return [void]
-      def mark_deleted
-        @deleted = true
-      end
-
       # @param [Integer] last_sequence_number
       # @return [void]
       def initialize_sequence_number(last_sequence_number)
         journal.last_committed_sequence_number = last_sequence_number
         @last_event_sequence_number = last_sequence_number >= 0 ? last_sequence_number : nil
-      end
-
-      # @return [Integer]
-      def last_committed_sequence_number
-        journal.last_committed_sequence_number
       end
 
       # @return [Journal]

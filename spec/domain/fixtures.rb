@@ -6,6 +6,8 @@ class InventoryItem
   ItemCreated = Struct.new(:id)
   ItemsCheckedIn = Struct.new(:id, :quantity)
 
+  attr_reader :id
+
   def initialize(id)
     @id = id
     @quantity = 0
