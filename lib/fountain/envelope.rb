@@ -4,7 +4,7 @@ module Fountain
 
     # @param [Object] object
     # @return [Envelope]
-    def self.as_message(object)
+    def self.as_envelope(object)
       if object.is_a?(self)
         object
       else

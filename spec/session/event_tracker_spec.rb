@@ -85,9 +85,7 @@ module Fountain::Session
     end
 
     def build_envelope
-      Fountain::Envelope.build do |builder|
-        builder.payload = Object.new
-      end
+      Fountain::Envelope.as_envelope(Object.new)
     end
   end
 end
