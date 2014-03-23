@@ -40,6 +40,8 @@ module Fountain
         end
       end
 
+      # @param [Object] listener
+      # @return [void]
       def unsubscribe(listener)
         type = listener_type(listener)
         if @listeners.delete?(listener)
