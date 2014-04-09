@@ -7,6 +7,11 @@ module Fountain
     # Entities are not thread safe. When storing entities, exclude the journal instance variable
     # from persistence. The journal should be treated as transient.
     module AggregateRoot
+      # @return [Boolean]
+      attr_reader :deleted
+
+      alias_method :deleted?, :deleted
+
       # @yield [EventEnvelope]
       # @return [void]
       def add_event_callback(&block)
@@ -30,6 +35,11 @@ module Fountain
       end
 
       private
+
+      # @return [void]
+      def mark_deleted
+        @deleted = true
+      end
 
       # @param [Object] payload
       # @param [Hash] headers
