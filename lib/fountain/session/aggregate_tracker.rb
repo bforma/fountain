@@ -14,7 +14,7 @@ module Fountain
         @aggregates.clear
       end
 
-      # @yield [AggregateRoot]
+      # @yield [Fountain::Domain::AggregateRoot]
       # @return [Enumerator]
       def each(&block)
         @aggregates.each_key(&block)
@@ -26,8 +26,8 @@ module Fountain
         @aggregates.empty?
       end
 
-      # @param [AggregateRoot] aggregate
-      # @return [AggregateRoot]
+      # @param [Fountain::Domain::AggregateRoot] aggregate
+      # @return [Fountain::Domain::AggregateRoot]
       def find_similar(aggregate)
         id = aggregate.id
         type = aggregate.class
@@ -39,7 +39,7 @@ module Fountain
 
       # Tracks an aggregate that will be persisted later
       #
-      # @param [AggregateRoot] aggregate
+      # @param [Fountain::Domain::AggregateRoot] aggregate
       # @param [Proc] callback
       # @return [void]
       def track(aggregate, callback)

@@ -16,6 +16,7 @@ module Fountain
         unit
       end
 
+      # @param [TransactionManager] transaction_manager
       def initialize(transaction_manager = nil)
         @inner_units = []
         @listeners = UnitListenerList.new
@@ -127,8 +128,8 @@ module Fountain
         @listeners.push(listener)
       end
 
-      # @param [AggregateRoot] aggregate
-      # @param [EventBus] event_bus
+      # @param [Fountain::Domain::AggregateRoot] aggregate
+      # @param [Fountain::Event::EventBus] event_bus
       # @param [Proc] callback
       # @return [void]
       def register_aggregate(aggregate, event_bus, callback)
@@ -147,7 +148,7 @@ module Fountain
       end
 
       # @param [Envelope] event
-      # @param [EventBus] event_bus
+      # @param [Fountain::Event::EventBus] event_bus
       # @return [void]
       def publish_event(event, event_bus)
         register_for_publication(event, event_bus, @state < COMMITTED)
@@ -274,7 +275,7 @@ module Fountain
       end
 
       # @param [Envelope] event
-      # @param [EventBus] event_bus
+      # @param [Fountain::Event::EventBus] event_bus
       # @param [Boolean] notify_listeners
       # @return [Envelope] Final event that got registered
       def register_for_publication(event, event_bus, notify_listeners)
