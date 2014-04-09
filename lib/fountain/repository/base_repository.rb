@@ -5,6 +5,8 @@ module Fountain
     #
     # Note that this repository does not handle locking. The underlying persistence mechanism must
     # deal with locking to use this repository (through optimistic locking or otherwise).
+    #
+    # Thread-safety of the repository itself is highly recommended.
     class BaseRepository
       include Loggable
 
@@ -35,6 +37,7 @@ module Fountain
         current_unit.register_aggregate(aggregate, event_bus, method(:commit_aggregate))
       end
 
+      # @raise [ConflictingAggregateVersionError]
       # @param [Object] aggregate_id
       # @param [Integer] expected_version
       # @return [Fountain::Domain::AggregateRoot]
