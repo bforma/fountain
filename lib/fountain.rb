@@ -1,4 +1,5 @@
 require 'adamantium'
+require 'equalizer'
 require 'logger'
 require 'securerandom'
 
@@ -15,6 +16,7 @@ require 'fountain/domain'
 require 'fountain/event'
 require 'fountain/session'
 require 'fountain/repository'
+require 'fountain/serializer'
 
 module Fountain
   extend Configuration
