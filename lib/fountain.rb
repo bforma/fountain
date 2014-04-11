@@ -13,8 +13,8 @@ require 'fountain/support'
 require 'fountain/configuration'
 require 'fountain/domain'
 require 'fountain/event'
-require 'fountain/repository'
 require 'fountain/session'
+require 'fountain/repository'
 
 module Fountain
   extend Configuration

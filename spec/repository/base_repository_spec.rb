@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'repository/fixtures'
 
 module Fountain::Repository
   describe BaseRepository do
@@ -19,7 +20,13 @@ module Fountain::Repository
 
       it 'rejects aggregates without the correct type' do
         expect {
-          subject.add(BadAggregate.new)
+          subject.add(SomeOtherAggregate.new)
+        }.to raise_error(ArgumentError)
+      end
+
+      it 'rejects existing aggregates' do
+        expect {
+          subject.add(StubAggregate.new(SecureRandom.uuid, 1))
         }.to raise_error(ArgumentError)
       end
     end
@@ -36,15 +43,5 @@ module Fountain::Repository
 
     def perform_delete(aggregate)
     end
-  end
-
-  class StubAggregate
-    include Fountain::Domain::AggregateRoot
-    attr_reader :id, :version
-  end
-
-  class BadAggregate
-    include Fountain::Domain::AggregateRoot
-    attr_reader :id, :version
   end
 end

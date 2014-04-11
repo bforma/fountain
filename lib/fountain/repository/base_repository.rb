@@ -37,6 +37,7 @@ module Fountain
         current_unit.register_aggregate(aggregate, event_bus, method(:commit_aggregate))
       end
 
+      # @raise [AggregateNotFoundError] If aggregate not found
       # @raise [ConflictingAggregateVersionError]
       # @param [Object] aggregate_id
       # @param [Integer] expected_version
