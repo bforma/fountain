@@ -1,41 +1,10 @@
 require 'spec_helper'
+require 'serializer/fixtures'
 
 module Fountain::Serializer
   describe MarshalSerializer do
 
-    # Sample event being serialized
-    ItemsCheckedIn = Struct.new(:id, :quantity)
-
-    # Useless example converters
-    StringToByteArrayConverter = Class.new(Converter) do
-      def convert_content(original)
-        original.bytes
-      end
-
-      def source_type
-        String
-      end
-
-      def target_type
-        Array
-      end
-    end
-
-    ByteArrayToStringConverter = Class.new(Converter) do
-      def convert_content(original)
-        original.pack('C*').force_encoding('UTF-8')
-      end
-
-      def source_type
-        Array
-      end
-
-      def target_type
-        String
-      end
-    end
-
-    subject { MarshalSerializer.new(converter_factory) }
+    subject { described_class.new(converter_factory) }
     let(:converter_factory) { ConverterFactory.new }
 
     let(:event) { ItemsCheckedIn.new(SecureRandom.uuid, rand(100..500)) }

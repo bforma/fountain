@@ -12,6 +12,12 @@ module Fountain
         @source_type = @target_type = type
       end
 
+      # @param [SerializedObject] original
+      # @return [SerializedObject]
+      def convert(original)
+        original
+      end
+
       # @param [Object] original
       # @return [Object]
       def convert_content(original)

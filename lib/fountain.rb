@@ -1,8 +1,12 @@
-require 'adamantium'
-require 'equalizer'
 require 'logger'
 require 'securerandom'
 
+# Third-party dependencies
+require 'adamantium'
+require 'equalizer'
+require 'thread_safe'
+
+# Core dependencies
 require 'fountain/version'
 
 require 'fountain/envelope'

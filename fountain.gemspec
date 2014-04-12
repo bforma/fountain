@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport'
   s.add_dependency 'adamantium'
   s.add_dependency 'equalizer'
+  s.add_dependency 'thread_safe'
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
