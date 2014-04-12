@@ -27,6 +27,7 @@ require 'fountain/router'
 require 'fountain/serializer'
 
 require 'fountain/event_sourcing'
+require 'fountain/event_store'
 
 module Fountain
   extend Configuration
