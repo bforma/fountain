@@ -4,10 +4,8 @@ require 'serializer/fixtures'
 module Fountain::Serializer
   describe SerializedEnvelope do
 
-    EMPTY_HASH = {}
-
     subject do
-      headers = serializer.serialize(EMPTY_HASH, String)
+      headers = serializer.serialize({}, String)
       payload = serializer.serialize(payload, String)
 
       described_class.build do |builder|

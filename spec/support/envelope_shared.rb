@@ -1,6 +1,4 @@
 shared_examples 'an envelope' do
-  EMPTY_HASH = {}.freeze
-
   describe '#headers' do
     it 'acts like Hash' do
       expect(subject.headers).to be_a(Hash)
@@ -26,7 +24,7 @@ shared_examples 'an envelope' do
     end
 
     it 'returns itself when no additional headers are given' do
-      m = subject.and_headers(EMPTY_HASH)
+      m = subject.and_headers({})
       expect(m).to be(subject)
     end
   end
