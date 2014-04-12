@@ -8,15 +8,16 @@ module Fountain
       end
 
       # @param [String] stream_id
-      # @param [Integer] version
+      # @param [Integer] first_sequence_number
+      # @param [Integer] last_sequence_number
       # @return [Enumerable]
-      def load_since(stream_id, version)
+      def load_slice(stream_id, first_sequence_number, last_sequence_number = -1)
         @mutex.synchronize do
           unless @streams.key?(stream_id)
             raise StreamNotFoundError
           end
 
-          @streams[stream_id][version..-1]
+          @streams[stream_id][first_sequence_number..last_sequence_number]
         end
       end
 
