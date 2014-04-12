@@ -68,7 +68,9 @@ module Fountain::Repository
     private
 
     def perform_load(aggregate_id, expected_version)
-      raise AggregateNotFoundError unless @aggregate
+      unless @aggregate
+        raise AggregateNotFoundError.new(aggregate_type, aggregate_id)
+      end
       @aggregate
     end
 
