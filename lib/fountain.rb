@@ -2,6 +2,7 @@ require 'logger'
 require 'securerandom'
 
 # Third-party dependencies
+require 'active_support/concern'
 require 'adamantium'
 require 'equalizer'
 require 'thread_safe'
@@ -9,10 +10,12 @@ require 'thread_safe'
 # Core dependencies
 require 'fountain/version'
 
+require 'fountain/support'
+require 'fountain/core_ext/class'
+
 require 'fountain/envelope'
 require 'fountain/envelope_builder'
 require 'fountain/errors'
-require 'fountain/support'
 
 # Core components
 require 'fountain/configuration'
@@ -22,6 +25,8 @@ require 'fountain/session'
 require 'fountain/repository'
 require 'fountain/router'
 require 'fountain/serializer'
+
+require 'fountain/event_sourcing'
 
 module Fountain
   extend Configuration
