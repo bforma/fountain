@@ -112,7 +112,7 @@ module Fountain
       # @return [void]
       def validate_version(aggregate, expected_version)
         unless expected_version.nil? || aggregate.version == expected_version
-          raise ConflictingAggregateVersionError
+          raise ConflictingAggregateVersionError.new(aggregate.id, expected_version, aggregate.version)
         end
       end
 
