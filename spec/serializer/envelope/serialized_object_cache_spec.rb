@@ -10,7 +10,7 @@ module Fountain::Serializer
     let(:serializer) { MarshalSerializer.new(converter_factory) }
 
     let(:envelope) do
-      Fountain::EnvelopeBuilder.build do |builder|
+      Fountain::Envelope.build do |builder|
         builder.headers = {
           user_id: SecureRandom.uuid
         }

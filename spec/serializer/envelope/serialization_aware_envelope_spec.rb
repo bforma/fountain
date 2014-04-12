@@ -7,7 +7,7 @@ module Fountain::Serializer
     subject { described_class.decorate(envelope) }
 
     let(:envelope) do
-      Fountain::EnvelopeBuilder.build do |builder|
+      Fountain::Envelope.build do |builder|
         builder.payload = payload
       end
     end
