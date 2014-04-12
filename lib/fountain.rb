@@ -20,6 +20,7 @@ require 'fountain/domain'
 require 'fountain/event'
 require 'fountain/session'
 require 'fountain/repository'
+require 'fountain/router'
 require 'fountain/serializer'
 
 module Fountain
