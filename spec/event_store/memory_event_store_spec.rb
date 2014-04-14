@@ -5,7 +5,7 @@ module Fountain::EventStore
 
     let(:stream_id) { SecureRandom.uuid }
 
-    describe '#load_class' do
+    describe '#load_slice' do
       it 'raises an error on non-existent stream' do
         expect {
           subject.load_slice(stream_id, 10)
