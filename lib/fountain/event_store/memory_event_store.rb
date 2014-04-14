@@ -27,6 +27,8 @@ module Fountain
       # @param [String] stream_id
       # @param [Enumerable] events
       def append(stream_id, events)
+        return if events.first.nil?
+
         stream = @streams.compute_if_absent(stream_id) do
           MemoryStream.new
         end
