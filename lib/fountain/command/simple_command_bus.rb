@@ -63,7 +63,7 @@ module Fountain
       def dispatch_to(command, handler)
         unit = @unit_factory.call
 
-        chain = InterceptorChain.new(unit, @interceptors.each, handler)
+        chain = InterceptorChain.new(unit, @interceptors.to_a, handler)
         result = chain.proceed(command)
 
         unit.commit
