@@ -92,5 +92,22 @@ module Fountain
         envelope.sequence_number
       end
     end # SequenceNumberParameterResolver
+
+    class CurrentUnitParameterResolver < ParameterResolver
+      KEYS = %i(current_unit unit)
+
+      # @param [Integer] index
+      # @param [Symbol] name
+      # @return [Boolean]
+      def can_resolve?(index, name)
+        KEYS.include?(name)
+      end
+
+      # @param [Envelope] envelope
+      # @return [Object]
+      def resolve(envelope)
+        Session.current_unit
+      end
+    end # CurrentUnitParameterResolver
   end # Router
 end

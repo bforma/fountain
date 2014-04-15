@@ -18,6 +18,7 @@ require 'fountain/envelope_builder'
 require 'fountain/errors'
 
 # Core components
+require 'fountain/command'
 require 'fountain/configuration'
 require 'fountain/domain'
 require 'fountain/event'
