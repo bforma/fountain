@@ -1,5 +1,5 @@
 module Fountain
-  # Thread-safe copy-on-write list, suitable when readers outnumber writers by a wide margin
+  # Thread-safe copy-on-write array, suitable when readers outnumber writers by a wide margin
   class ConcurrentList
     include Enumerable
 
@@ -14,7 +14,7 @@ module Fountain
       @elements.each(&block)
     end
 
-    # Returns true if this set is empty
+    # Returns true if this array is empty
     # @return [Boolean]
     def empty?
       @elements.empty?
@@ -28,16 +28,16 @@ module Fountain
       end
     end
 
-    # Returns the number of elements in this set
+    # Returns the number of elements in this array
     # @return [Integer]
     def size
       @elements.size
     end
 
-    # Returns an array containing the elements in this set
+    # Returns an array containing the elements in this array
     # @return [Array]
     def to_a
-      @elements.to_a
+      @elements.dup
     end
 
     private
