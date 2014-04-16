@@ -19,14 +19,15 @@ require 'fountain/errors'
 
 # Core components
 require 'fountain/configuration'
-require 'fountain/domain'
-require 'fountain/event'
-require 'fountain/session'
-require 'fountain/repository'
 require 'fountain/router'
 require 'fountain/serializer'
+require 'fountain/session'
+
+require 'fountain/repository'
 
 require 'fountain/command'
+require 'fountain/domain'
+require 'fountain/event'
 require 'fountain/event_sourcing'
 require 'fountain/event_store'
 
