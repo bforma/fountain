@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
   s.require_path = 'lib'
 
+  s.add_dependency 'abstract_type'
   s.add_dependency 'activesupport'
   s.add_dependency 'adamantium'
   s.add_dependency 'equalizer'

@@ -8,6 +8,7 @@ module Fountain
     #
     # Thread-safety of the repository itself is highly recommended.
     class BaseRepository
+      include AbstractType
       include Loggable
 
       # @return [Class]
@@ -66,27 +67,18 @@ module Fountain
         # This method is intentionally left blank
       end
 
-      # @abstract
       # @param [Object] aggregate_id
       # @param [Integer] expected_version
       # @return [Fountain::Domain::AggregateRoot]
-      def perform_load(aggregate_id, expected_version)
-        raise NotImplementedError
-      end
+      abstract_method :perform_load
 
-      # @abstract
       # @param [Fountain::Domain::AggregateRoot] aggregate
       # @return [void]
-      def perform_save(aggregate)
-        raise NotImplementedError
-      end
+      abstract_method :perform_save
 
-      # @abstract
       # @param [Fountain::Domain::AggregateRoot] aggregate
       # @return [void]
-      def perform_delete(aggregate)
-        raise NotImplementedError
-      end
+      abstract_method :perform_delete
 
       # @param [Fountain::Domain::AggregateRoot] aggregate
       # @return [void]

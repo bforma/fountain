@@ -2,6 +2,7 @@ require 'logger'
 require 'securerandom'
 
 # Third-party dependencies
+require 'abstract_type'
 require 'active_support/concern'
 require 'adamantium'
 require 'equalizer'

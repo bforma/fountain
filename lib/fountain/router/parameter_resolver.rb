@@ -1,21 +1,16 @@
 module Fountain
   module Router
-    # @abstract
     class ParameterResolver
-      # @abstract
+      include AbstractType
+
       # @param [Integer] index
       # @param [Symbol] name
       # @return [Boolean]
-      def can_resolve?(index, name)
-        false
-      end
+      abstract_method :can_resolve?
 
-      # @abstract
       # @param [Envelope] envelope
       # @return [Object]
-      def resolve(envelope)
-        # This method is intentionally blank
-      end
+      abstract_method :resolve
     end # ParameterResolver
 
     class PayloadParameterResolver < ParameterResolver

@@ -1,6 +1,8 @@
 module Fountain
   module Repository
     class LockingRepository < BaseRepository
+      include AbstractType
+
       # @return [LockManager]
       attr_reader :lock_manager
 

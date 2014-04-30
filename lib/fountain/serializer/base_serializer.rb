@@ -2,8 +2,9 @@ require 'active_support/core_ext/string/inflections'
 
 module Fountain
   module Serializer
-    # @abstract
     class BaseSerializer
+      include AbstractType
+
       # @return [ConverterFactory]
       attr_reader :converter_factory
 
@@ -63,30 +64,20 @@ module Fountain
 
       # Serializes the given Ruby object
       #
-      # @abstract
       # @param [Object] object Original Ruby object to serializer
       # @return [Object] Serialized content having the native content type
-      def perform_serialize(object)
-        raise NotImplementedError
-      end
+      abstract_method :perform_serialize
 
       # Deserializes the given serialized content into the given Ruby type
       #
-      # @abstract
       # @param [Object] content Serialized content having the native content type
       # @param [Class] klass Target class being deserialized
       # @return [Object] Deserialized object
-      def perform_deserialize(content, klass)
-        raise NotImplementedError
-      end
+      abstract_method :perform_deserialize
 
       # Returns the native content type that this serializer uses
-      #
-      # @abstract
       # @return [Class]
-      def native_content_type
-        raise NotImplementedError
-      end
+      abstract_method :native_content_type
 
       # Converts the given content from the given source type to the given target type
       #

@@ -1,6 +1,8 @@
 module Fountain
   module Serializer
     class Converter
+      include AbstractType
+
       # @param [Class] source_type
       # @param [Class] target_type
       # @return [Boolean]
@@ -16,19 +18,13 @@ module Fountain
 
       # @param [Object] original
       # @return [Object]
-      def convert_content(original)
-        raise NotImplementedError
-      end
+      abstract_method :convert_content
 
       # @return [Class]
-      def source_type
-        raise NotImplementedError
-      end
+      abstract_method :source_type
 
       # @return [Class]
-      def target_type
-        raise NotImplementedError
-      end
+      abstract_method :target_type
     end # Converter
   end # Serializer
 end
