@@ -5,6 +5,7 @@ module Fountain
     #
     # Asynchronous handling is left up to the listeners to implement
     class SimpleEventBus < EventBus
+      include ListenerProxyAware
       include Loggable
 
       def initialize
@@ -32,7 +33,7 @@ module Fountain
       # @param [Object] listener
       # @return [void]
       def subscribe(listener)
-        type = listener_type(listener)
+        type = resolve_listener_type(listener)
         if @listeners.add?(listener)
           logger.debug "Subscribed listener [#{type.name}]"
         else
@@ -43,23 +44,11 @@ module Fountain
       # @param [Object] listener
       # @return [void]
       def unsubscribe(listener)
-        type = listener_type(listener)
+        type = resolve_listener_type(listener)
         if @listeners.delete?(listener)
           logger.debug "Unsubscribed listener [#{type.name}]"
         else
           logger.info "Listener not removed, already unsubscribed [#{type.name}]"
-        end
-      end
-
-      private
-
-      # @param [Object] listener
-      # @return [Class]
-      def listener_type(listener)
-        if listener.respond_to?(:proxied_type)
-          listener.proxied_type
-        else
-          listener.class
         end
       end
     end # SimpleEventBus
