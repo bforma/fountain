@@ -89,7 +89,7 @@ module Fountain
     end # SequenceNumberParameterResolver
 
     class CurrentUnitParameterResolver < ParameterResolver
-      KEYS = %i(current_unit unit)
+      KEYS = [:current_unit, :unit]
 
       # @param [Integer] index
       # @param [Symbol] name
