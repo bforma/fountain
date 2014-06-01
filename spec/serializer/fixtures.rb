@@ -6,7 +6,7 @@ module Fountain::Serializer
   # Useless converters to demonstrate converters
   class StringToByteArrayConverter < Converter
     def convert_content(original)
-      original.bytes
+      original.bytes.to_a
     end
 
     def source_type
