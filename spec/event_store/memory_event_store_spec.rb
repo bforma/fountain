@@ -3,47 +3,48 @@ require 'spec_helper'
 module Fountain::EventStore
   describe MemoryEventStore do
 
+    let(:stream_type) { 'Test' }
     let(:stream_id) { SecureRandom.uuid }
 
     describe '#load_slice' do
       it 'raises an error on non-existent stream' do
         expect {
-          subject.load_slice(stream_id, 10)
+          subject.load_slice(stream_type, stream_id, 10)
         }.to raise_error(StreamNotFoundError)
       end
 
       it 'returns a partial stream starting at the given version' do
-        subject.append(stream_id, build_stream(10))
-        expect(subject.load_slice(stream_id, 5).size).to eql(5)
+        subject.append(stream_type, stream_id, build_stream(10))
+        expect(subject.load_slice(stream_type, stream_id, 5).size).to eql(5)
       end
 
       it 'returns a partial stream starting and ending at the given versions' do
-        subject.append(stream_id, build_stream(10))
+        subject.append(stream_type, stream_id, build_stream(10))
 
-        expect(subject.load_slice(stream_id, 5, 6).size).to eql(2)
-        expect(subject.load_slice(stream_id, 5, 100).size).to eql(5)
+        expect(subject.load_slice(stream_type, stream_id, 5, 6).size).to eql(2)
+        expect(subject.load_slice(stream_type, stream_id, 5, 100).size).to eql(5)
       end
     end
 
     describe '#load_all' do
       it 'raises an error on non-existent stream' do
         expect {
-          subject.load_all(stream_id)
+          subject.load_all(stream_type, stream_id)
         }.to raise_error(StreamNotFoundError)
       end
 
       it 'returns the entire event stream' do
-        subject.append(stream_id, build_stream(10))
-        expect(subject.load_all(stream_id).size).to eql(10)
+        subject.append(stream_type, stream_id, build_stream(10))
+        expect(subject.load_all(stream_type, stream_id).size).to eql(10)
       end
     end
 
     describe '#append' do
       it 'raises an error on duplicate sequence numbers' do
-        subject.append(stream_id, build_stream(2))
-        subject.append(stream_id, build_stream(2, 2))
+        subject.append(stream_type, stream_id, build_stream(2))
+        subject.append(stream_type, stream_id, build_stream(2, 2))
         expect {
-          subject.append(stream_id, build_stream(2, 2))
+          subject.append(stream_type, stream_id, build_stream(2, 2))
         }.to raise_error
       end
     end

@@ -3,8 +3,6 @@ require 'active_support/core_ext/string/inflections'
 module Fountain
   module EventSourcing
     class AggregateFactory
-      STREAM_ID_FORMAT = '%s:%s'
-
       # @return [Class]
       attr_reader :aggregate_type
 
@@ -20,11 +18,6 @@ module Fountain
       # @return [AggregateRoot]
       def create
         @aggregate_type.allocate
-      end
-
-      # @return [String]
-      def stream_id(aggregate_id)
-        format(STREAM_ID_FORMAT, type_identifier, aggregate_id)
       end
     end # AggregateFactory
   end # EventSourcing

@@ -24,9 +24,8 @@ module Fountain
       # @param [Integer] expected_version
       # @return [AggregateRoot]
       def perform_load(aggregate_id, expected_version)
-        stream_id = @aggregate_factory.stream_id(aggregate_id)
         begin
-          events = @event_store.load_all(stream_id)
+          events = @event_store.load_all(type_identifier, aggregate_id)
         rescue EventStore::StreamNotFoundError
           raise Fountain::Repository::AggregateNotFoundError.new(aggregate_type, aggregate_id)
         end
@@ -45,15 +44,18 @@ module Fountain
       # @return [void]
       def perform_save(aggregate)
         stream = aggregate.uncommitted_events
-        stream_id = @aggregate_factory.stream_id(aggregate.id)
-
-        @event_store.append(stream_id, stream)
+        @event_store.append(type_identifier, aggregate.id, stream)
       end
 
       # @param [AggregateRoot] aggregate
       # @return [void]
       def perform_delete(aggregate)
         perform_save(aggregate)
+      end
+
+      # @return [String]
+      def type_identifier
+        @aggregate_factory.type_identifier
       end
     end # Repository
   end # EventSourcing

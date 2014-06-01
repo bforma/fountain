@@ -4,17 +4,20 @@ module Fountain
     class EventStore
       include AbstractType
 
-      # @param [String] stream_id
+      # @param [String] stream_type
+      # @param [Object] stream_id
       # @param [Integer] first
       # @param [Integer] last
       # @return [Enumerable]
       abstract_method :load_slice
 
-      # @param [String] stream_id
+      # @param [String] stream_type
+      # @param [Object] stream_id
       # @return [Enumerable]
       abstract_method :load_all
 
-      # @param [String] stream_id
+      # @param [String] stream_type
+      # @param [Object] stream_id
       # @param [Enumerable] events
       abstract_method :append
     end # EventStore
