@@ -7,6 +7,8 @@ module Fountain
     # Entities are not thread safe. When storing entities, exclude the journal instance variable
     # from persistence. The journal should be treated as transient.
     module AggregateRoot
+      include Serialization
+
       # @return [Boolean]
       attr_reader :deleted
 
@@ -32,6 +34,11 @@ module Fountain
       # @return [Integer]
       def uncommitted_event_count
         journal.size
+      end
+
+      # @return [Enumerable]
+      def excluded_properties
+        [:@journal]
       end
 
       private
