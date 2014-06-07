@@ -44,15 +44,15 @@ module Fountain::Serializer
     describe '#can_serialize_to?' do
       it 'returns true if conversion available' do
         converter_factory.register(StringToByteArrayConverter.new)
-        expect(subject.can_serialize_to?(Array)).to be_true
+        expect(subject.can_serialize_to?(Array)).to be true
       end
 
       it 'returns false if conversion not available' do
-        expect(subject.can_serialize_to?(Array)).to be_false
+        expect(subject.can_serialize_to?(Array)).to be false
       end
 
       it 'returns true if native content type' do
-        expect(subject.can_serialize_to?(String)).to be_true
+        expect(subject.can_serialize_to?(String)).to be true
       end
     end
 
