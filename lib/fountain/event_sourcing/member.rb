@@ -46,7 +46,7 @@ module Fountain
 
           if value.respond_to?(:handle_aggregate_event)
             value
-          elsif value.response_to?(:each)
+          elsif value.respond_to?(:each)
             value.to_enum.select do |v|
               v.respond_to?(:handle_aggregate_event)
             end

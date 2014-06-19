@@ -20,5 +20,21 @@ module Fountain::EventSourcing
       end
     end
 
+    context "with a child entity" do
+      let(:cards) { [1, 2, 3] }
+      subject { Game.new(id, cards) }
+
+      it 'initializes the aggregate state from an event stream' do
+        subject.start
+
+        stream = subject.uncommitted_events
+        expect(stream.size).to eql(3)
+        subject = Game.new_from_stream(stream)
+
+        expect(subject.id).to eql(id)
+        expect(subject.cards).to eql(cards)
+        expect(subject.dealt_cards).to eql(cards.slice(0, 1))
+      end
+    end
   end
 end
